@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String toTasks() {
-        return "redirect:tasks";
+        return "redirect:/tasks";
     }
 }

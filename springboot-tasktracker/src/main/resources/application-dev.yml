@@ -1,0 +1,7 @@
+tasktracker:
+  max-tasks: 5
+  default-page-size: 3
+
+logging:
+  level:
+    root: TRACE

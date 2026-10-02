@@ -1,0 +1,7 @@
+tasktracker:
+  max-tasks: 200
+  default-page-size: 12
+
+logging:
+  level:
+    root: WARN
