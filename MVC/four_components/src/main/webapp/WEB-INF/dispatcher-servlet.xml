@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="order" value="0"/>
+
+    </bean>
+
+
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/home">homeController</prop>
+                <prop key="/greet">greetingHandler</prop>
+                <prop key="/about">aboutController</prop>
+                <prop key="/diagnostics">diagnosticsController</prop>
+                <prop key="/raw">rawHandler</prop>
+                <prop key="/plain">plainController</prop>
+                <prop key="/go-home">goHomeController</prop>
+            </props>
+        </property>
+        <property name="order" value="2"/>
+    </bean>
+
+
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <bean class="com.nti.mvc.adapter.GreetingHandlerAdapter"/>
+
+
+    <bean id="aboutController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="about"/>
+    </bean>
+
+    <bean id="goHomeController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="goHome"/>
+    </bean>
+
+    <bean id="diagnosticsController" class="com.nti.mvc.controller.DiagnosticsController" />
+    <bean id="homeController" class="com.nti.mvc.controller.HomeController" />
+    <bean name="/legacy" class="com.nti.mvc.controller.LegacyController" />
+    <bean id="annotatedController" class="com.nti.mvc.controller.AnnotatedController" />
+    <bean id="rawHandler" class="com.nti.mvc.controller.RawHandler" />
+    <bean id="greetingHandler" class="com.nti.mvc.controller.GreetingHandler" />
+    <bean id="plainController" class="com.nti.mvc.controller.PlainController" />
+
+
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="0"/>
+    </bean>
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="100"/>
+    </bean>
+
+    <bean name="goHome" class="org.springframework.web.servlet.view.RedirectView">
+        <property name="url" value="/home"/>
+        <property name="contextRelative" value="true"/>
+    </bean>
+
+    <bean id="plain" class="com.nti.mvc.view.PlainTextView" />
+
+
+
+
+</beans>
